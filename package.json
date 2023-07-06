@@ -2,7 +2,7 @@
   "name": "e-commerce",
   "version": "1.0.0",
   "description": "e-commerce using mern stack",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "start": "nodemon Backend/server.js",
     "dev": "set NODE_ENV=development&&nodemon Backend/server.js",
