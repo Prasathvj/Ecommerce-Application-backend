@@ -1,0 +1,491 @@
+[
+    {
+        "name": "Apple AirPods(2nd gen)",
+        "price": 150,
+        "description": "The new AirPods combine intelligent design with breakthrough technology and crystal clear sound. Powered by the new Apple H1 headphone chip, AirPods now feature hands-free access to Siri using just your voice. And up to 3 hours of talk time on a single charge.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/product/airpods1.jpg"
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Apple",
+        "stock": 5,
+        "numOfReviews": 1,
+        "reviews": []
+    },
+    {
+        "name": "Apple AirPods(1nd gen)",
+        "price": 160,
+        "description": "The new AirPods combine intelligent design with breakthrough technology and crystal clear sound. Powered by the new Apple H1 headphone chip, AirPods now feature hands-free access to Siri using just your voice. And up to 3 hours of talk time on a single charge.",
+        "ratings": 4,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/airpods2.jpg"
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Apple",
+        "stock": 5,
+        "numOfReviews": 5,
+        "reviews": []
+    },
+    {
+        "name": "Apple AirPods(3rd gen)",
+        "price": 170,
+        "description": "The new AirPods combine intelligent design with breakthrough technology and crystal clear sound. Powered by the new Apple H1 headphone chip, AirPods now feature hands-free access to Siri using just your voice. And up to 3 hours of talk time on a single charge.",
+        "ratings": 4,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/airpods3.jpg"
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Apple",
+        "stock": 10,
+        "numOfReviews": 2,
+        "reviews": []
+    },
+    {
+        "name": "APPLE New AirPods Max Bluetooth Headset  (Pink, On the Ear)",
+        "price": 582,
+        "description": "AirPods Max reimagine over-ear headphones. An Apple designed dynamic driver provides immersive high fidelity audio. Every detail, from canopy to cushions, has been designed for an exceptional fit.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image":"http://127.0.0.1:9090/uploads/product/airpods5"
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE New AirPods Max Bluetooth Headset  (Skyblue, On the Ear)",
+        "price": 582,
+        "description": "AirPods Max reimagine over-ear headphones. An Apple designed dynamic driver provides immersive high fidelity audio. Every detail, from canopy to cushions, has been designed for an exceptional fit.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/airpods4.jpg"
+            },
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/airpods3.jpg"
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+
+    {
+        "name": "APPLE New AirPods Max Bluetooth Headset  (Pink, On the Ear)",
+        "price": 582,
+        "description": "AirPods Max reimagine over-ear headphones. An Apple designed dynamic driver provides immersive high fidelity audio. Every detail, from canopy to cushions, has been designed for an exceptional fit.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/airpods3.jpg"
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE New AirPods Max Bluetooth Headset",
+        "price": 582,
+        "description": "AirPods Max reimagine over-ear headphones. An Apple designed dynamic driver provides immersive high fidelity audio. Every detail, from canopy to cushions, has been designed for an exceptional fit.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/airpods5.jpg"
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },  
+    {
+        "name": "APPLE New AirPods Max Bluetooth Headset  (Green, On the Ear)",
+        "price": 582,
+        "description": "AirPods Max reimagine over-ear headphones. An Apple designed dynamic driver provides immersive high fidelity audio. Every detail, from canopy to cushions, has been designed for an exceptional fit.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/airpods8.jpg"
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE New AirPods Max Bluetooth Headset  (white, On the Ear)",
+        "price": 582,
+        "description": "AirPods Max reimagine over-ear headphones. An Apple designed dynamic driver provides immersive high fidelity audio. Every detail, from canopy to cushions, has been designed for an exceptional fit.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/airpods9.jpg"
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE iPad (10th Gen) 256 GB ROM 10.9 inch with Wi-Fi Only (Silver)",
+        "price": 873,
+        "description": "Landscape Stereo Speakers, Dual Microphones for Calls, Video Recording and Audio Recording, Video Calling (FaceTime Video): iPad to Any FaceTime Enabled Device over Wi-Fi or Cellular, Audio Calling (FaceTime Audio): iPad to Any FaceTime Enabled Device over Wi-Fi or Cellular, Digital Compass, iBeacon Micro Location, Accessibility Features: VoiceOver, Magnifier, Closed Captions, Voice Control, Siri and Dictation, AssistiveTouch, Zoom, Switch Control, Speak Screen",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "/http://127.0.0.1:9090/uploads/product/ipad1.jpg"
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE iPad Air (5th gen) 256 GB ROM 10.9 Inch with Wi-Fi+5G (Purple)",
+        "price": 982,
+        "description": "Landscape Stereo Speakers, Dual Microphones for Calls, Video Recording and Audio Recording, Video Calling (FaceTime Video): iPad to Any FaceTime Enabled Device over Wi-Fi or Cellular, Audio Calling (FaceTime Audio): iPad to Any FaceTime Enabled Device over Wi-Fi or Cellular, Digital Compass, iBeacon Micro Location, Accessibility Features: VoiceOver, Magnifier, Closed Captions, Voice Control, Siri and Dictation, AssistiveTouch, Zoom, Switch Control, Speak Screen",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/ipad2.jpg"
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE iPad Air (5th gen) 256 GB ROM 10.9 Inch with Wi-Fi+5G (Blue)",
+        "price": 982,
+        "description": "Landscape Stereo Speakers, Dual Microphones for Calls, Video Recording and Audio Recording, Video Calling (FaceTime Video): iPad to Any FaceTime Enabled Device over Wi-Fi or Cellular, Audio Calling (FaceTime Audio): iPad to Any FaceTime Enabled Device over Wi-Fi or Cellular, Digital Compass, iBeacon Micro Location, Accessibility Features: VoiceOver, Magnifier, Closed Captions, Voice Control, Siri and Dictation, AssistiveTouch, Zoom, Switch Control, Speak Screen",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/ipad3.jpg"
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE iPad Air (5th gen) 256 GB ROM 10.9 Inch with Wi-Fi+5G (silver)",
+        "price": 982,
+        "description": "Landscape Stereo Speakers, Dual Microphones for Calls, Video Recording and Audio Recording, Video Calling (FaceTime Video): iPad to Any FaceTime Enabled Device over Wi-Fi or Cellular, Audio Calling (FaceTime Audio): iPad to Any FaceTime Enabled Device over Wi-Fi or Cellular, Digital Compass, iBeacon Micro Location, Accessibility Features: VoiceOver, Magnifier, Closed Captions, Voice Control, Siri and Dictation, AssistiveTouch, Zoom, Switch Control, Speak Screen",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/ipad4.jpg"
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE iPad Air (5th gen) 256 GB ROM 10.9 Inch with Wi-Fi+5G (Pink)",
+        "price": 982,
+        "description": "Landscape Stereo Speakers, Dual Microphones for Calls, Video Recording and Audio Recording, Video Calling (FaceTime Video): iPad to Any FaceTime Enabled Device over Wi-Fi or Cellular, Audio Calling (FaceTime Audio): iPad to Any FaceTime Enabled Device over Wi-Fi or Cellular, Digital Compass, iBeacon Micro Location, Accessibility Features: VoiceOver, Magnifier, Closed Captions, Voice Control, Siri and Dictation, AssistiveTouch, Zoom, Switch Control, Speak Screen",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/ipad5.jpg"
+            }
+        ],
+        "category": "Electronics",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+
+    {
+        "name": "APPLE iPhone 13 (Midnight, 128 GB)",
+        "price": 740,
+        "description": "iPhone 13. boasts an advanced dual-camera system that allows you to click mesmerising pictures with immaculate clarity. Furthermore, the lightning-fast A15 Bionic chip allows for seamless multitasking, elevating your performance to a new dimension. A big leap in battery life, a durable design, and a bright Super Retina XDR display facilitate boosting your user experience.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/ipad5.jpg"
+            }
+        ],
+        "category": "Mobile Phones",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE iPhone 13 (Midnight, 128 GB)",
+        "price": 740,
+        "description": "iPhone 13. boasts an advanced dual-camera system that allows you to click mesmerising pictures with immaculate clarity. Furthermore, the lightning-fast A15 Bionic chip allows for seamless multitasking, elevating your performance to a new dimension. A big leap in battery life, a durable design, and a bright Super Retina XDR display facilitate boosting your user experience.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/phone1.jpg"
+            }
+        ],
+        "category": "Mobile Phones",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE iPhone 13 (Starlight, 128 GB)",
+        "price": 740,
+        "description": "iPhone 13. boasts an advanced dual-camera system that allows you to click mesmerising pictures with immaculate clarity. Furthermore, the lightning-fast A15 Bionic chip allows for seamless multitasking, elevating your performance to a new dimension. A big leap in battery life, a durable design, and a bright Super Retina XDR display facilitate boosting your user experience.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/phone2.jpg"
+            }
+        ],
+        "category": "Mobile Phones",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE iPhone 13 (Blue, 128 GB)",
+        "price": 740,
+        "description": "iPhone 13. boasts an advanced dual-camera system that allows you to click mesmerising pictures with immaculate clarity. Furthermore, the lightning-fast A15 Bionic chip allows for seamless multitasking, elevating your performance to a new dimension. A big leap in battery life, a durable design, and a bright Super Retina XDR display facilitate boosting your user experience.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/phone4.jpg"
+            }
+        ],
+        "category": "Mobile Phones",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE iPhone 13 (Purple, 128 GB)",
+        "price": 740,
+        "description": "iPhone 13. boasts an advanced dual-camera system that allows you to click mesmerising pictures with immaculate clarity. Furthermore, the lightning-fast A15 Bionic chip allows for seamless multitasking, elevating your performance to a new dimension. A big leap in battery life, a durable design, and a bright Super Retina XDR display facilitate boosting your user experience.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/phone3.jpg"
+            }
+        ],
+        "category": "Mobile Phones",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE iPhone 14 Pro (Deep Purple, 256 GB)",
+        "price": 1578,
+        "description": "iPhone 14 Pro. boasts an advanced dual-camera system that allows you to click mesmerising pictures with immaculate clarity. Furthermore, the lightning-fast A15 Bionic chip allows for seamless multitasking, elevating your performance to a new dimension. A big leap in battery life, a durable design, and a bright Super Retina XDR display facilitate boosting your user experience.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/phone6.jpg"
+            }
+        ],
+        "category": "Mobile Phones",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE iPhone 14 Pro (Space Black, 256 GB)",
+        "price": 1578,
+        "description": "iPhone 14 Pro. boasts an advanced dual-camera system that allows you to click mesmerising pictures with immaculate clarity. Furthermore, the lightning-fast A15 Bionic chip allows for seamless multitasking, elevating your performance to a new dimension. A big leap in battery life, a durable design, and a bright Super Retina XDR display facilitate boosting your user experience.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/phone7.jpg"
+            }
+        ],
+        "category": "Mobile Phones",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE iPhone 14 Pro (Silver, 256 GB)",
+        "price": 1578,
+        "description": "iPhone 14 Pro. boasts an advanced dual-camera system that allows you to click mesmerising pictures with immaculate clarity. Furthermore, the lightning-fast A15 Bionic chip allows for seamless multitasking, elevating your performance to a new dimension. A big leap in battery life, a durable design, and a bright Super Retina XDR display facilitate boosting your user experience.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/phone3.jpg"
+            }
+        ],
+        "category": "Mobile Phones",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE Watch Series7",
+        "price": 840,
+        "description": "The largest, most advanced Always-on Retina display yet makes everything you do with your Apple Watch Series 7 bigger and better. Series 7 is the most durable Apple Watch ever built, with an even more crack-resistant front crystal. Advanced features let you measure your blood oxygen level, take an ECG anytime, and access mindfulness and sleep tracking apps. You can also track dozens of workouts, including new tai chi and pilates.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "/http://127.0.0.1:9090/uploads/product/watch2.jpg"
+            }
+        ],
+        "category": "Accessories",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE Watch Series7 (Green)",
+        "price": 840,
+        "description": "The largest, most advanced Always-on Retina display yet makes everything you do with your Apple Watch Series 7 bigger and better. Series 7 is the most durable Apple Watch ever built, with an even more crack-resistant front crystal. Advanced features let you measure your blood oxygen level, take an ECG anytime, and access mindfulness and sleep tracking apps. You can also track dozens of workouts, including new tai chi and pilates.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/watch1.jpg"
+            }
+        ],
+        "category": "Accessories",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE Watch Series7 (Blue)",
+        "price": 840,
+        "description": "The largest, most advanced Always-on Retina display yet makes everything you do with your Apple Watch Series 7 bigger and better. Series 7 is the most durable Apple Watch ever built, with an even more crack-resistant front crystal. Advanced features let you measure your blood oxygen level, take an ECG anytime, and access mindfulness and sleep tracking apps. You can also track dozens of workouts, including new tai chi and pilates.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/watch2.jpg"
+            }
+        ],
+        "category": "Accessories",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": "APPLE Watch Series7 (White)",
+        "price": 840,
+        "description": "The largest, most advanced Always-on Retina display yet makes everything you do with your Apple Watch Series 7 bigger and better. Series 7 is the most durable Apple Watch ever built, with an even more crack-resistant front crystal. Advanced features let you measure your blood oxygen level, take an ECG anytime, and access mindfulness and sleep tracking apps. You can also track dozens of workouts, including new tai chi and pilates.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/watch8.jpg"
+            }
+        ],
+        "category": "Accessories",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    
+
+    {
+        "name": " APPLE Watch Ultra (Orange Alpine Strap, Medium)",
+        "price": 1090,
+        "description": "The most rugged and capable Apple Watch ever, designed for exploration, adventure and endurance. With a 49-millimetre aerospace-grade titanium case, extra-long battery life, specialised apps that work with the advanced sensors and a new customisable Action button.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/watch5.jpg"
+            }
+        ],
+        "category": "Accessories",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+    {
+        "name": " APPLE Watch Ultra (Midnight Strap, Regular)",
+        "price": 1090,
+        "description": "The most rugged and capable Apple Watch ever, designed for exploration, adventure and endurance. With a 49-millimetre aerospace-grade titanium case, extra-long battery life, specialised apps that work with the advanced sensors and a new customisable Action button.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/watch7.jpg"
+            }
+        ],
+        "category": "Accessories",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    },
+  
+    {
+        "name": " APPLE Watch Ultra (White Strap, Medium)",
+        "price": 1090,
+        "description": "The most rugged and capable Apple Watch ever, designed for exploration, adventure and endurance. With a 49-millimetre aerospace-grade titanium case, extra-long battery life, specialised apps that work with the advanced sensors and a new customisable Action button.",
+        "ratings": 4.5,
+        "images": [
+            {
+                "image": "http://127.0.0.1:9090/uploads/product/watch2.jpg"
+            }
+        ],
+        "category": "Accessories",
+        "seller": "Apple",
+        "stock": 15,
+        "numOfReviews": 153,
+        "reviews": []
+    }
+
+   
+    
+
+
+
+
+
+
+
+
+    
+
+
+    
+
+      
+]
