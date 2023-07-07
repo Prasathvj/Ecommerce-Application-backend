@@ -10,7 +10,7 @@ const cors =require("cors")
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({credentials:true}))
+app.use(cors())
 app.use('/uploads', express.static(path.join(__dirname,'uploads') ) )
 
 const products = require('./routes/product')
