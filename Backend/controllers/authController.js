@@ -11,13 +11,13 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
 
     let avatar;
     
-    // let BASE_URL = process.env.BACKEND_URL;
-    // if(process.env.NODE_ENV === "production"){
-    //     BASE_URL = `${req.protocol}://${req.get('host')}`
-    // }
+    let BASE_URL = process.env.BACKEND_URL;
+    if(process.env.NODE_ENV === "production"){
+        BASE_URL = `${req.protocol}://${req.get('host')}`
+    }
 
     if(req.file){
-        avatar = `https://ecommerce-application-ynf3.onrender.com/uploads/user/${req.file.originalname}`
+        avatar = `${BASE_URL}/uploads/user/${req.file.originalname}`
     }
 
     const user = await User.create({
