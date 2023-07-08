@@ -2,17 +2,33 @@ const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncError = require("./catchAsyncError");
 const jwt = require("jsonwebtoken")
 const User = require("../models/userModel")
-exports.isAuthenticatedUser =catchAsyncError(async(req, res, next)=>{
-    const {token} = req.cookies;
+exports.isAuthenticatedUser = async(req, res, next)=>{
+    // const {token} = req.cookies;
+    // if(!token){
+       
+    // }
 
-    if(!token){
-        return next(new ErrorHandler("Login first to handle this product",401))
+    // const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY)
+    // req.user = await User.findById(decoded.id)
+    // next();
+
+    let token;
+
+    if(req.headers){
+        try {
+            token = req.headers.authorization.split(" ")[1];
+            const decode = jwt.verify(token, process.env.JWT_SECRET_KEY)
+            req.user = await User.findById(decode.id).select("_id name email")
+            next()
+        } catch (error) {
+            console.log(error)
+            return res.status(400).json({message:"Invalid Authorization"})
+        }
     }
-
-    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY)
-    req.user = await User.findById(decoded.id)
-    next();
-})
+    if(!token){
+        return res.status(400).json({message:"Access Denied"})
+    }
+}
 
 exports.authorizeRoles = (...roles) => {
     return  (req, res, next) => {
