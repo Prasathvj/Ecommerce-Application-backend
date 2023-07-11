@@ -18,7 +18,7 @@ exports.isAuthenticatedUser = catchAsyncError(async(req, res, next)=>{
                 next()
             } catch (error) {
                 console.log(error)
-                return res.status(400).json({message:"Invalid Authorization"})
+                return res.status(400).json({message:"Login first to handle this resource"})
             }
         }
     }
