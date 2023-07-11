@@ -86,7 +86,7 @@ exports.forgotPassword = catchAsyncError( async (req, res, next)=>{
  
 
     //Create reset url
-    const resetUrl = `${BASE_URL}/password/reset/${resetToken}`;
+    const resetUrl = `https://prasath-e-commerce.netlify.app/password/reset/${resetToken}`;
 
     const message = `Your password reset url is as follows \n\n 
     ${resetUrl} \n\n If you have not requested this email, then ignore it.`;
