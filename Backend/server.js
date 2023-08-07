@@ -2,7 +2,6 @@ const app = require('./app');
 const path = require("path");
 const dbConnection = require("./config/db");
 
-
 //Database connection
 dbConnection()
 
