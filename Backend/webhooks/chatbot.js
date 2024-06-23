@@ -64,7 +64,7 @@ router.post('/webhook', async (req, res) => {
             const productId = product._id.toString(); // Convert ObjectId to string
             const productLink = `http://localhost:3000/product/${productId}`;
             res.json({
-                fulfillmentText: `Here is the product ID for ${productName}: ${productLink}`
+                fulfillmentText: `Here is the product ID for ${productName}: <a href="${productLink}" target="_blank">${productLink}</a>`
             });
         } else {
             res.json({
