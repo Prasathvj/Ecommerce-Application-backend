@@ -18,7 +18,7 @@ router.post('/webhook', async (req, res) => {
             }, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${req.headers.authorization}`
+                    'Authorization': req.headers.authorization // Use the authorization header as it is
                 }
             });
 
@@ -42,7 +42,7 @@ router.post('/webhook', async (req, res) => {
             }, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${req.headers.authorization}`
+                    'Authorization': req.headers.authorization
                 }
             });
 
