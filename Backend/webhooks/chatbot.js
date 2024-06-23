@@ -80,47 +80,42 @@ router.post('/webhook', async (req, res) => {
         const category = parameters['category'];
         const productName = parameters['product-name'];
 
-        // Construct the query object
-        let query = {};
+        // Query your database or product catalog based on the parameters
+        const products = await Product.find({
+            $or: [
+                { name: { $regex: productName, $options: 'i' } }, // Case-insensitive search by name
+                { category: { $regex: category, $options: 'i' } },
+                { price: { $gte: minPrice, $lte: maxPrice } }
+            ]
+        });
 
-        // Add price range filter if specified
-        if (minPrice && maxPrice) {
-            query.price = { $gte: minPrice, $lte: maxPrice };
-        }
+        if (products.length > 0) {
+            // Construct a response with the list of matching products
+            let responseText = 'Here are the matching products:\n';
+            let richResponses = products.map(product => ({
+                text: {
+                    text: [
+                        `${product.name} - $${product.price}`
+                    ]
+                },
+                card: {
+                    title: product.name,
+                    subtitle: `$${product.price}`,
+                    buttons: [
+                        {
+                            text: `View ${product.name}`,
+                            postback: `http://localhost:3000/product/${product._id}`
+                        }
+                    ]
+                }
+            }));
 
-        // Add category filter if specified
-        if (category) {
-            query.category = category;
-        }
-
-        // Add name filter if specified
-        if (productName) {
-            query.name = { $regex: productName, $options: 'i' }; // Case-insensitive search
-        }
-
-        try {
-            // Fetch products matching the criteria
-            const products = await Product.find(query);
-
-            if (products.length > 0) {
-                // Construct a response with the list of matching products
-                let responseText = 'Here are the matching products:\n';
-                products.forEach(product => {
-                    responseText += `${product.name} - $${product.price}\n<a href="http://localhost:3000/product/${product._id}" target="_blank">${product.name}</a>\n\n`;
-                });
-
-                res.json({
-                    fulfillmentText: responseText
-                });
-            } else {
-                res.json({
-                    fulfillmentText: 'No products found matching your criteria.'
-                });
-            }
-        } catch (error) {
-            console.error(error);
             res.json({
-                fulfillmentText: 'Failed to search for products.'
+                fulfillmentMessages: richResponses
+            });
+        } else {
+            res.json({
+                fulfillmentText: 'No products found matching your criteria.'
             });
         }
     } else {
