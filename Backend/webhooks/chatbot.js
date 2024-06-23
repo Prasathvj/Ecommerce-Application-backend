@@ -63,17 +63,31 @@ router.post('/webhook', async (req, res) => {
         if (product) {
             const productId = product._id.toString(); // Convert ObjectId to string
             const productLink = `http://localhost:3000/product/${productId}`;
-            const fulfillmentText = `Here is the product ID for ${productName}: <a href="${productLink}" target="_blank">${productName}</a>`;
             res.json({
-                fulfillmentText: fulfillmentText,
+                fulfillmentText: `Here is the product ID for ${productName}`,
                 fulfillmentMessages: [
                     {
                         platform: "ACTIONS_ON_GOOGLE",
                         simpleResponses: {
                             simpleResponses: [
                                 {
-                                    textToSpeech: fulfillmentText,
-                                    displayText: fulfillmentText
+                                    textToSpeech: `Here is the product ID for ${productName}: ${productLink}`,
+                                    displayText: `Here is the product ID for ${productName}: ${productLink}`
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        platform: "ACTIONS_ON_GOOGLE",
+                        basicCard: {
+                            title: productName,
+                            subtitle: `Product ID: ${productId}`,
+                            buttons: [
+                                {
+                                    title: "View Product",
+                                    openUrlAction: {
+                                        url: productLink
+                                    }
                                 }
                             ]
                         }
@@ -86,6 +100,7 @@ router.post('/webhook', async (req, res) => {
             });
         }
     }
+    
     
     
     
