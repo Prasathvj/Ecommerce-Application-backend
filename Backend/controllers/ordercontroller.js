@@ -112,3 +112,63 @@ exports.deleteOrder = catchAsyncError(async (req, res, next) => {
         success: true
     })
 })
+
+
+// Add product to order
+exports.addProductToOrder = catchAsyncError(async (req, res, next) => {
+    const { orderId, productId, quantity } = req.body;
+
+    const product = await Product.findById(productId);
+    if (!product) {
+        return next(new ErrorHandler('Product not found', 404));
+    }
+
+    let order = await Order.findById(orderId);
+    if (!order) {
+        return next(new ErrorHandler('Order not found', 404));
+    }
+
+    const orderItem = {
+        product: productId,
+        name: product.name,
+        quantity,
+        price: product.price,
+        image: product.images[0].image
+    };
+
+    order.orderItems.push(orderItem);
+    order.itemsPrice += product.price * quantity;
+    order.totalPrice += product.price * quantity;
+    await order.save();
+
+    res.status(200).json({
+        success: true,
+        order
+    });
+});
+
+// Remove product from order
+exports.removeProductFromOrder = catchAsyncError(async (req, res, next) => {
+    const { orderId, productId } = req.body;
+
+    let order = await Order.findById(orderId);
+    if (!order) {
+        return next(new ErrorHandler('Order not found', 404));
+    }
+
+    const orderItemIndex = order.orderItems.findIndex(item => item.product.toString() === productId);
+    if (orderItemIndex === -1) {
+        return next(new ErrorHandler('Product not found in order', 404));
+    }
+
+    const orderItem = order.orderItems[orderItemIndex];
+    order.itemsPrice -= orderItem.price * orderItem.quantity;
+    order.totalPrice -= orderItem.price * orderItem.quantity;
+    order.orderItems.splice(orderItemIndex, 1);
+    await order.save();
+
+    res.status(200).json({
+        success: true,
+        order
+    });
+});
