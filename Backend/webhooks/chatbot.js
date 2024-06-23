@@ -58,11 +58,11 @@ router.post('/webhook', async (req, res) => {
 
     if (intent === 'ViewProductInfo') {
         const productName = parameters['product-name'];
-        const productInfo = await Product.find(productName);
+        const productInfo = await Product.find({ name: productName }); // Use a filter object
         console.log("123",productInfo)
-        if (productInfo) {
+        if (productInfo && productInfo.length > 0) { // Check if productInfo is not empty
             res.json({
-                fulfillmentText: `Here are the details of ${productName}: ${productInfo}`
+                fulfillmentText: `Here are the details of ${productName}: ${productInfo[0].description}` // Assuming description is a field in your Product model
             });
         } else {
             res.json({
@@ -70,6 +70,7 @@ router.post('/webhook', async (req, res) => {
             });
         }
     }
+    
 });
 
 module.exports = router;
