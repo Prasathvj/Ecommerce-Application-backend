@@ -72,6 +72,45 @@ router.post('/webhook', async (req, res) => {
             });
         }
     }
+
+    if (intent === 'SearchProducts') {
+        const priceRange = parameters['price-range'];
+        const minPrice = priceRange[0].amount;
+        const maxPrice = priceRange[1].amount;
+        const category = parameters['category'];
+        const productName = parameters['product-name'];
+
+        // Query your database or product catalog based on the parameters
+        // For example, find products with matching name, category, or price range
+        const products = await Product.find({
+            $or: [
+                { name: { $regex: productName, $options: 'i' } }, // Case-insensitive search by name
+                { category: category },
+                { price: { $gte: minPrice, $lte: maxPrice } }
+            ]
+        });
+
+        if (products.length > 0) {
+            // Construct a response with the list of matching products
+            let responseText = 'Here are the matching products:\n';
+            products.forEach(product => {
+                responseText += `${product.name} - ${product.price}\n`;
+            });
+
+            res.json({
+                fulfillmentText: responseText
+            });
+        } else {
+            res.json({
+                fulfillmentText: 'No products found matching your criteria.'
+            });
+        }
+    } else {
+        // Handle other intents or fallback
+        res.json({
+            fulfillmentText: 'Unsupported action.'
+        });
+    }
     
     
 });
