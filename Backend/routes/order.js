@@ -15,8 +15,8 @@ router.route('/admin/order/:id').put(isAuthenticatedUser, authorizeRoles('admin'
                       
                         
 //chatbot
-router.route('/order/add-product').post(isAuthenticatedUser, addProductToOrder);
-router.route('/order/remove-product').post(isAuthenticatedUser, removeProductFromOrder);
+router.route('/order/add-product').post(addProductToOrder);
+router.route('/order/remove-product').post(removeProductFromOrder);
                        
 
 module.exports = router;
