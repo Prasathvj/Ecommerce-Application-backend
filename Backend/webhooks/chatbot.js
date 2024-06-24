@@ -134,24 +134,20 @@ router.post('/webhook', async (req, res) => {
             const products = await Product.find({ ratings: { $gte: minRating } });
 
             if (products.length > 0) {
-                // Construct a response with the list of matching products as rich content chips
-                let richContent = [
-                    [
-                        {
-                            "type": "chips",
-                            "options": products.map(product => ({
-                                "text": `${product.name} - ${product.ratings} stars`,
-                                "link": `http://localhost:3000/product/${product._id}`,
-                                "linkType": "newTab", // Ensure the link opens in a new tab
-                                "image": {
-                                    "src": {
-                                        "rawUrl": `${product.images[0].image}` // Replace with actual image URL if available
-                                    }
-                                }
-                            }))
-                        }
-                    ]
-                ];
+                // Construct a response with the list of matching products as rich content info items
+                let richContent = products.map(product => ([
+                    {
+                        "type": "info",
+                        "title": product.name,
+                        "subtitle": `${product.ratings} stars - $${product.price}`,
+                        "image": {
+                            "src": {
+                                "rawUrl": "https://example.com/images/logo.png" // Replace with actual image URL if available
+                            }
+                        },
+                        "actionLink": `http://localhost:3000/product/${product._id}`
+                    }
+                ]));
 
                 return res.json({
                     fulfillmentMessages: [
