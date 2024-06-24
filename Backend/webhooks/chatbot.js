@@ -138,7 +138,7 @@ router.post('/webhook', async (req, res) => {
                 let responseText = `Here are the products with at least ${minRating} stars:\n`;
                 let responseMessages = products.map(product => ({
                     text: {
-                        link: [
+                        text: [
                             `${product.name} - ${product.ratings} stars\n` +
                             `<a href="http://localhost:3000/product/${product._id}" target="_blank">${product.name}</a>`
                         ]
