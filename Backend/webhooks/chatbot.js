@@ -134,19 +134,32 @@ router.post('/webhook', async (req, res) => {
             const products = await Product.find({ ratings: { $gte: minRating } });
 
             if (products.length > 0) {
-                // Construct a response with the list of matching products
-                let responseText = `Here are the products with at least ${minRating} stars:\n`;
-                let responseMessages = products.map(product => ({
-                    text: {
-                        text: [
-                            `${product.name} - ${product.ratings} stars\n` +
-                            `<a href="http://localhost:3000/product/${product._id}" target="_blank">${product.name}</a>`
-                        ]
-                    }
-                }));
+                // Construct a response with the list of matching products as rich content chips
+                let richContent = [
+                    [
+                        {
+                            "type": "chips",
+                            "options": products.map(product => ({
+                                "text": `${product.name} - ${product.ratings} stars`,
+                                "link": `http://localhost:3000/product/${product._id}`,
+                                "image": {
+                                    "src": {
+                                        "rawUrl": "https://example.com/images/logo.png" // Replace with actual image URL if available
+                                    }
+                                }
+                            }))
+                        }
+                    ]
+                ];
 
                 return res.json({
-                    fulfillmentMessages: responseMessages
+                    fulfillmentMessages: [
+                        {
+                            "payload": {
+                                "richContent": richContent
+                            }
+                        }
+                    ]
                 });
             } else {
                 return res.json({
@@ -159,7 +172,7 @@ router.post('/webhook', async (req, res) => {
                 fulfillmentText: 'An error occurred while fetching the products. Please try again later.'
             });
         }
-    } 
+    }
     
 });
 
