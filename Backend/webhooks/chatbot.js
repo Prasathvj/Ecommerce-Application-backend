@@ -138,11 +138,11 @@ router.post('/webhook', async (req, res) => {
                 let richContent = [
                     [
                         {
-                            "type": "chips",
+                            "type": "info",
                             "options": products.map(product => ({
-                                "text": `${product.name} - ${product.ratings} stars`,
-                                "link": `http://localhost:3000/product/${product.images[0].image}`,
-                                "linkType": "newTab", // Ensure the link opens in a new tab
+                                "title": `${product.name} - ${product.ratings} stars`,
+                                "actionLink": `http://localhost:3000/product/${product._id}`,
+                               
                                 "image": {
                                     "src": {
                                         "rawUrl": `${product.images[0].image}` // Replace with actual image URL if available
