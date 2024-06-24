@@ -171,29 +171,29 @@ router.post('/webhook', async (req, res) => {
         }
     }
 
-    if (intent === 'LoginIntent') {
-        return res.json({
-            fulfillmentText: 'Please enter your email ID.'
-        });
-    }
+    // if (intent === 'LoginIntent') {
+    //     return res.json({
+    //         fulfillmentText: 'Please enter your email ID.'
+    //     });
+    // }
     
-    if (intent === 'CaptureEmailIntent') {
-        const email = parameters && parameters.email;
-        if (!email) {
-            return res.json({
-                fulfillmentText: 'Please provide a valid email ID.'
-            });
-        }
-        // Save email to session parameters
-        req.session.email = email;
-        return res.json({
-            fulfillmentText: 'Please enter your password.'
-        });
-    }
+    // if (intent === 'CaptureEmailIntent') {
+    //     const email = parameters && parameters.email;
+    //     if (!email) {
+    //         return res.json({
+    //             fulfillmentText: 'Please provide a valid email ID.'
+    //         });
+    //     }
+    //     // Save email to session parameters
+    //     req.session.email = email;
+    //     return res.json({
+    //         fulfillmentText: 'Please enter your password.'
+    //     });
+    // }
     
-    if (intent === 'CapturePasswordIntent') {
+    if (intent === 'signinIntent') {
         const password = parameters && parameters.password;
-        const email = req.session && req.session.email;
+        const email = parameters && parameters.email;
     
         if (!email || !password) {
             return res.json({
