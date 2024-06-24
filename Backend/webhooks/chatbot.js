@@ -170,6 +170,49 @@ router.post('/webhook', async (req, res) => {
             });
         }
     }
+
+    if (intent === 'LoginIntent') {
+        return res.json({
+            fulfillmentText: 'Please enter your email ID.'
+        });
+    }
+
+    if (intent === 'CaptureEmailIntent') {
+        const email = parameters['email'];
+        // Save email to session parameters
+        req.session.email = email;
+        return res.json({
+            fulfillmentText: 'Please enter your password.'
+        });
+    }
+
+    if (intent === 'CapturePasswordIntent') {
+        const password = parameters['password'];
+        const email = req.session.email;
+
+        try {
+            const response = await axios.post('https://ecommerce-application-ynf3.onrender.com/api/v1/login', {
+                email: email,
+                password: password
+            });
+
+            if (response.data.success) {
+                return res.json({
+                    fulfillmentText: 'Login successful!'
+                });
+            } else {
+                return res.json({
+                    fulfillmentText: 'Login failed. Please check your credentials and try again.'
+                });
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            return res.json({
+                fulfillmentText: 'An error occurred during login. Please try again later.'
+            });
+        }
+    }
+
     
 });
 
