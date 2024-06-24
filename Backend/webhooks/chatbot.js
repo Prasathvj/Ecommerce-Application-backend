@@ -142,7 +142,7 @@ router.post('/webhook', async (req, res) => {
                         "subtitle": `${product.ratings} stars - $${product.price}`,
                         "image": {
                             "src": {
-                                "rawUrl": "https://example.com/images/logo.png" // Replace with actual image URL if available
+                                "rawUrl": `${product.images[0].image}` // Replace with actual image URL if available
                             }
                         },
                         "actionLink": `http://localhost:3000/product/${product._id}`
