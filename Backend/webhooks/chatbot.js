@@ -135,14 +135,18 @@ router.post('/webhook', async (req, res) => {
 
             if (products.length > 0) {
                 // Construct a response with the list of matching products
-                let responseText = 'Here are the products with at least ' + minRating + ' stars:\n';
-                products.forEach(product => {
-                    responseText += `${product.name} - ${product.ratings} stars\n`;
-                    responseText += `<a href="http://localhost:3000/product/${product._id}" target="_blank">${product.name}</a>\n\n`;
-                });
+                let responseText = `Here are the products with at least ${minRating} stars:\n`;
+                let responseMessages = products.map(product => ({
+                    text: {
+                        text: [
+                            `${product.name} - ${product.ratings} stars\n` +
+                            `<a href="http://localhost:3000/product/${product._id}" target="_blank">${product.name}</a>`
+                        ]
+                    }
+                }));
 
                 return res.json({
-                    fulfillmentText: responseText
+                    fulfillmentMessages: responseMessages
                 });
             } else {
                 return res.json({
