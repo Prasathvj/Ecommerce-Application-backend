@@ -145,7 +145,7 @@ router.post('/webhook', async (req, res) => {
                                 "linkType": "newTab", // Ensure the link opens in a new tab
                                 "image": {
                                     "src": {
-                                        "rawUrl": "https://example.com/images/logo.png" // Replace with actual image URL if available
+                                        "rawUrl": `${product.images.image}` // Replace with actual image URL if available
                                     }
                                 }
                             }))
