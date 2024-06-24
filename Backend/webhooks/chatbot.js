@@ -132,7 +132,7 @@ router.post('/webhook', async (req, res) => {
 
     if (intent === 'FilterProductsByRating') {
         const minRating = parameters['star-rating'][0];
-        console.log("rating", minRating)
+        console.log("rating", minRating);
 
         try {
             const products = await Product.find({ ratings: { $gte: minRating } });
@@ -142,24 +142,26 @@ router.post('/webhook', async (req, res) => {
                 let responseText = 'Here are the products with at least ' + minRating + ' stars:\n';
                 products.forEach(product => {
                     responseText += `${product.name} - ${product.ratings} stars\n`;
+                    responseText += `<a href="http://localhost:3000/product/${product._id}" target="_blank">${product.name}</a>\n\n`;
                 });
 
-                res.json({
+                return res.json({
                     fulfillmentText: responseText
                 });
             } else {
-                res.json({
+                return res.json({
                     fulfillmentText: 'No products found with the specified star rating.'
                 });
             }
         } catch (error) {
-            res.json({
+            console.error("Error fetching products:", error); // Log the error
+            return res.json({
                 fulfillmentText: 'An error occurred while fetching the products. Please try again later.'
             });
         }
     } else {
         // Handle other intents or fallback
-        res.json({
+        return res.json({
             fulfillmentText: 'Unsupported action.'
         });
     }
