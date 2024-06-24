@@ -176,26 +176,37 @@ router.post('/webhook', async (req, res) => {
             fulfillmentText: 'Please enter your email ID.'
         });
     }
-
+    
     if (intent === 'CaptureEmailIntent') {
-        const email = parameters['email'];
+        const email = parameters && parameters.email;
+        if (!email) {
+            return res.json({
+                fulfillmentText: 'Please provide a valid email ID.'
+            });
+        }
         // Save email to session parameters
         req.session.email = email;
         return res.json({
             fulfillmentText: 'Please enter your password.'
         });
     }
-
+    
     if (intent === 'CapturePasswordIntent') {
-        const password = parameters['password'];
-        const email = req.session.email;
-
+        const password = parameters && parameters.password;
+        const email = req.session && req.session.email;
+    
+        if (!email || !password) {
+            return res.json({
+                fulfillmentText: 'Email ID or password is missing. Please try again.'
+            });
+        }
+    
         try {
             const response = await axios.post('https://ecommerce-application-ynf3.onrender.com/api/v1/login', {
                 email: email,
                 password: password
             });
-
+    
             if (response.data.success) {
                 return res.json({
                     fulfillmentText: 'Login successful!'
@@ -212,6 +223,7 @@ router.post('/webhook', async (req, res) => {
             });
         }
     }
+    
 
     
 });
