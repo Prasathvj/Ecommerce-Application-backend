@@ -210,7 +210,9 @@ router.post('/webhook', async (req, res) => {
             if (response.data.success) {
                 return res.json({
                     fulfillmentText: 'Login successful!',
-                    redirectUrl: 'http://localhost:3000/'
+                    payload: {
+                        redirectUrl: 'http://localhost:3000/'
+                    }
                 });
             } else {
                 return res.json({
