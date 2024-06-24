@@ -129,6 +129,39 @@ router.post('/webhook', async (req, res) => {
             fulfillmentText: 'Unsupported action.'
         });
     }
+
+    if (intent === 'FilterProductsByRating') {
+        const minRating = parameters['star-rating'];
+
+        try {
+            const products = await Product.find({ ratings: { $gte: minRating } });
+
+            if (products.length > 0) {
+                // Construct a response with the list of matching products
+                let responseText = 'Here are the products with at least ' + minRating + ' stars:\n';
+                products.forEach(product => {
+                    responseText += `${product.name} - ${product.ratings} stars\n`;
+                });
+
+                res.json({
+                    fulfillmentText: responseText
+                });
+            } else {
+                res.json({
+                    fulfillmentText: 'No products found with the specified star rating.'
+                });
+            }
+        } catch (error) {
+            res.json({
+                fulfillmentText: 'An error occurred while fetching the products. Please try again later.'
+            });
+        }
+    } else {
+        // Handle other intents or fallback
+        res.json({
+            fulfillmentText: 'Unsupported action.'
+        });
+    }
     
     
 });
