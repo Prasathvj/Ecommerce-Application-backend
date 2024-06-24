@@ -5,7 +5,8 @@ const Product = require('../models/productModel');
 router.post('/webhook', async (req, res) => {
     const intent = req.body.queryResult.intent.displayName;
     const parameters = req.body.queryResult.parameters;
-
+    console.log("Intent:", intent); // Logging the intent
+    console.log("Parameters:", parameters); // Logging the parameters
     if (intent === 'AddProductToOrder') {
         const { orderId, productId, quantity } = parameters;
         console.log("product1",productId)
@@ -123,11 +124,6 @@ router.post('/webhook', async (req, res) => {
                 fulfillmentText: 'Failed to search for products.'
             });
         }
-    } else {
-        // Handle other intents or fallback
-        res.json({
-            fulfillmentText: 'Unsupported action.'
-        });
     }
 
     if (intent === 'FilterProductsByRating') {
@@ -159,13 +155,7 @@ router.post('/webhook', async (req, res) => {
                 fulfillmentText: 'An error occurred while fetching the products. Please try again later.'
             });
         }
-    } else {
-        // Handle other intents or fallback
-        return res.json({
-            fulfillmentText: 'Unsupported action.'
-        });
-    }
-    
+    } 
     
 });
 
