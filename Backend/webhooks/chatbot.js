@@ -142,6 +142,7 @@ router.post('/webhook', async (req, res) => {
                             "options": products.map(product => ({
                                 "text": `${product.name} - ${product.ratings} stars`,
                                 "link": `http://localhost:3000/product/${product._id}`,
+                                "linkType": "newTab", // Ensure the link opens in a new tab
                                 "image": {
                                     "src": {
                                         "rawUrl": "https://example.com/images/logo.png" // Replace with actual image URL if available
