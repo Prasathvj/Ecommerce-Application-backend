@@ -7,17 +7,26 @@ router.post('/webhook', async (req, res) => {
     const parameters = req.body.queryResult.parameters;
     
     if (intent === 'SearchProductsByPriceRange') {
-        const minPrice = parameters['min-price'];
-        const maxPrice = parameters['max-price'];
+        const priceRange = parameters['price-range'];
     
-        if (!minPrice || !maxPrice) {
+        if (!priceRange || priceRange.length < 2) {
             return res.json({
                 fulfillmentText: 'Please provide both minimum and maximum values for the price range.'
             });
         }
     
+        const minPrice = parseInt(priceRange[0], 10);
+        const maxPrice = parseInt(priceRange[1], 10);
+        console.log('min',minPrice)
+        console.log('min',maxPrice)
+    
+        if (isNaN(minPrice) || isNaN(maxPrice)) {
+            return res.json({
+                fulfillmentText: 'Please provide valid numerical values for the price range.'
+            });
+        }
         let query = {
-            price: { $gte: minPrice.amount, $lte: maxPrice.amount }
+            price: { $gte: minPrice, $lte: maxPrice }
         };
     
         try {
@@ -58,8 +67,8 @@ router.post('/webhook', async (req, res) => {
                 fulfillmentText: 'Failed to search for products.'
             });
         }
-    }    
-
+    }
+      
     if (intent === 'SearchProductsByCategory') {
         const category = parameters['category'] || "";
     
