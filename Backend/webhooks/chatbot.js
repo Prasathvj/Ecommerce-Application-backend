@@ -86,7 +86,7 @@ router.post('/webhook', async (req, res) => {
                 let richContent = [[]];
                 products.forEach(product => {
                     richContent[0].push({
-                        "type": "info",
+                        "type": "accordion",
                         "title": product.name,
                         "subtitle": `${product.price} USD`,
                         "image": {
