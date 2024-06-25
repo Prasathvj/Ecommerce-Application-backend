@@ -23,27 +23,21 @@ router.post('/webhook', async (req, res) => {
         }
     }
 
-    if (intent === 'SearchProducts') {
+    if (intent === 'SearchProductsByPriceRange') {
         const priceRange = parameters['price-range'] || [];
-        const category = parameters['category'] || "";
-        const productName = parameters['product-name'] || "";
-    
-        let query = {};
         
-        if (priceRange.length >= 2) {
-            const minPrice = priceRange[0].amount;
-            const maxPrice = priceRange[1].amount;
-            query.price = { $gte: minPrice, $lte: maxPrice };
+        if (priceRange.length < 2) {
+            return res.json({
+                fulfillmentText: 'Please provide both minimum and maximum price.'
+            });
         }
-    
-        if (category) {
-            query.category = category;
-        }
-    
-        if (productName) {
-            query.name = { $regex: productName, $options: 'i' };
-        }
-    
+        const minPrice = priceRange[0].amount;
+        const maxPrice = priceRange[1].amount;
+
+        let query = {
+            price: { $gte: minPrice, $lte: maxPrice }
+        };
+
         try {
             const products = await Product.find(query);
             if (products.length > 0) {
@@ -83,9 +77,113 @@ router.post('/webhook', async (req, res) => {
             });
         }
     }
-    
-    
 
+    if (intent === 'SearchProductsByCategory') {
+        const category = parameters['category'] || "";
+    
+        if (!category) {
+            return res.json({
+                fulfillmentText: 'Please provide a category.'
+            });
+        }
+    
+        let query = { category };
+    
+        try {
+            const products = await Product.find(query);
+            if (products.length > 0) {
+                let richContent = [[]];
+                products.forEach(product => {
+                    richContent[0].push({
+                        "type": "info",
+                        "title": product.name,
+                        "subtitle": `${product.price} USD`,
+                        "image": {
+                            "src": {
+                                "rawUrl": product.images[0].image
+                            }
+                        },
+                        "actionLink": `https://prasath-e-commerce.netlify.app/product/${product._id}`
+                    });
+                });
+    
+                return res.json({
+                    fulfillmentMessages: [
+                        {
+                            "payload": {
+                                "richContent": richContent
+                            }
+                        }
+                    ]
+                });
+            } else {
+                return res.json({
+                    fulfillmentText: 'No products found in the specified category.'
+                });
+            }
+        } catch (error) {
+            console.error(error);
+            return res.json({
+                fulfillmentText: 'Failed to search for products.'
+            });
+        }
+    }
+
+    if (intent === 'SearchProductsByProductName') {
+        const productName = parameters['product-name'] || "";
+    
+        if (!productName) {
+            return res.json({
+                fulfillmentText: 'Please provide a product name.'
+            });
+        }
+    
+        let query = { name: { $regex: productName, $options: 'i' } };
+    
+        try {
+            const products = await Product.find(query);
+            if (products.length > 0) {
+                let richContent = [[]];
+                products.forEach(product => {
+                    richContent[0].push({
+                        "type": "chips",
+                        "options": [
+                            {
+                                "text": product.name,
+                                "image": {
+                                    "src": {
+                                        "rawUrl": product.images[0].image
+                                    }
+                                },
+                                "link": `https://prasath-e-commerce.netlify.app/product/${product._id}`
+                            }
+                        ]
+                    });
+                });
+    
+                return res.json({
+                    fulfillmentMessages: [
+                        {
+                            "payload": {
+                                "richContent": richContent
+                            }
+                        }
+                    ]
+                });
+            } else {
+                return res.json({
+                    fulfillmentText: 'No products found matching the specified name.'
+                });
+            }
+        } catch (error) {
+            console.error(error);
+            return res.json({
+                fulfillmentText: 'Failed to search for products.'
+            });
+        }
+    }
+    
+    
     if (intent === 'FilterProductsByRating') {
         const rating = parameters['star-rating'];
         console.log("rating", rating);
@@ -128,6 +226,8 @@ router.post('/webhook', async (req, res) => {
             });
         }
     }
+
+  
 
     if (intent === 'signinIntent') {
         const password = parameters && parameters.password;
