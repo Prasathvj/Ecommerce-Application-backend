@@ -5,64 +5,13 @@ const Product = require('../models/productModel');
 router.post('/webhook', async (req, res) => {
     const intent = req.body.queryResult.intent.displayName;
     const parameters = req.body.queryResult.parameters;
-    console.log("Intent:", intent); // Logging the intent
-    console.log("Parameters:", parameters); // Logging the parameters
-    if (intent === 'AddProductToOrder') {
-        const { orderId, productId, quantity } = parameters;
-        console.log("product1",productId)
-
-        try {
-            const response = await axios.post('http://localhost:9090/api/v1/order/add-product', {
-                orderId,
-                productId,
-                quantity
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': req.headers.authorization // Use the authorization header as it is
-                }
-            });
-
-            res.json({
-                fulfillmentText: `Product added to order successfully.`
-            });
-        } catch (error) {
-            res.json({
-                fulfillmentText: `Failed to add product to order.`
-            });
-        }
-    }
-
-    if (intent === 'RemoveProductFromOrder') {
-        const { orderId, productId } = parameters;
-
-        try {
-            const response = await axios.post('http://localhost:9090/api/v1/order/remove-product', {
-                orderId,
-                productId
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': req.headers.authorization
-                }
-            });
-
-            res.json({
-                fulfillmentText: `Product removed from order successfully.`
-            });
-        } catch (error) {
-            res.json({
-                fulfillmentText: `Failed to remove product from order.`
-            });
-        }
-    }
-
+    
     if (intent === 'ViewProductInfo') {
         const productName = parameters['product-name'];
         const product = await Product.findOne({ name: productName });
     
         if (product) {
-            const productId = product._id.toString(); // Convert ObjectId to string
+            const productId = product._id.toString();
             const productLink = `http://localhost:3000/product/${productId}`;
             res.json({
                 fulfillmentText: `Here is the product ID for ${productName}: ${productLink}`
@@ -81,37 +30,47 @@ router.post('/webhook', async (req, res) => {
         const category = parameters['category'];
         const productName = parameters['product-name'];
 
-        // Construct the query object
         let query = {};
-
-        // Add price range filter if specified
+    
         if (minPrice && maxPrice) {
             query.price = { $gte: minPrice, $lte: maxPrice };
         }
-
-        // Add category filter if specified
         if (category) {
             query.category = category;
         }
-
-        // Add name filter if specified
         if (productName) {
-            query.name = { $regex: productName, $options: 'i' }; // Case-insensitive search
+            query.name = { $regex: productName, $options: 'i' };
         }
-
+    
         try {
-            // Fetch products matching the criteria
             const products = await Product.find(query);
-
             if (products.length > 0) {
-                // Construct a response with the list of matching products
-                let responseText = 'Here are the matching products:\n';
+                let richContent = [[]];
                 products.forEach(product => {
-                    responseText += `${product.name} - $${product.price}\n<a href="http://localhost:3000/product/${product._id}" target="_blank">${product.name}</a>\n\n`;
+                    richContent[0].push({
+                        "type": "chips",
+                        "options": [
+                            {
+                                "text": product.name,
+                                "image": {
+                                    "src": {
+                                        "rawUrl": `${product.images[0].image}`
+                                    }
+                                },
+                                "link": `https://prasath-e-commerce.netlify.app/product/${product._id}`
+                            }
+                        ]
+                    });
                 });
-
+    
                 res.json({
-                    fulfillmentText: responseText
+                    fulfillmentMessages: [
+                        {
+                            "payload": {
+                                "richContent": richContent
+                            }
+                        }
+                    ]
                 });
             } else {
                 res.json({
@@ -125,6 +84,7 @@ router.post('/webhook', async (req, res) => {
             });
         }
     }
+    
 
     if (intent === 'FilterProductsByRating') {
         const minRating = parameters['star-rating'][0];
@@ -132,9 +92,7 @@ router.post('/webhook', async (req, res) => {
 
         try {
             const products = await Product.find({ ratings: { $gte: minRating } });
-
             if (products.length > 0) {
-                // Construct a response with the list of matching products as rich content info items
                 let richContent = products.map(product => ([
                     {
                         "type": "info",
@@ -142,7 +100,7 @@ router.post('/webhook', async (req, res) => {
                         "subtitle": `${product.ratings} stars - $${product.price}`,
                         "image": {
                             "src": {
-                                "rawUrl": `${product.images[0].image}` // Replace with actual image URL if available
+                                "rawUrl": `${product.images[0].image}`
                             }
                         },
                         "actionLink": `http://localhost:3000/product/${product._id}`
