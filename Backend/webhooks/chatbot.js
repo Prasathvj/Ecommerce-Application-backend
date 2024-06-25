@@ -88,7 +88,7 @@ router.post('/webhook', async (req, res) => {
 
     if (intent === 'FilterProductsByRating') {
         const rating = parameters['star-rating'];
-        console.log("rating", ratingString);
+        console.log("rating", rating);
 
         try {
             const products = await Product.find({ ratings: rating });  // { $gte: minRating }
