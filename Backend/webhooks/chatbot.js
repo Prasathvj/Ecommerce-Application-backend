@@ -91,7 +91,7 @@ router.post('/webhook', async (req, res) => {
         console.log("rating", minRating);
 
         try {
-            const products = await Product.find({ ratings: { $gte: minRating } });
+            const products = await Product.find({ ratings: minRating });  // { $gte: minRating }
             if (products.length > 0) {
                 let richContent = products.map(product => ([
                     {
@@ -103,7 +103,7 @@ router.post('/webhook', async (req, res) => {
                                 "rawUrl": `${product.images[0].image}`
                             }
                         },
-                        "actionLink": `http://localhost:3000/product/${product._id}`
+                        "actionLink": `https://prasath-e-commerce.netlify.app/product/${product._id}`
                     }
                 ]));
 
@@ -129,26 +129,6 @@ router.post('/webhook', async (req, res) => {
         }
     }
 
-    // if (intent === 'LoginIntent') {
-    //     return res.json({
-    //         fulfillmentText: 'Please enter your email ID.'
-    //     });
-    // }
-    
-    // if (intent === 'CaptureEmailIntent') {
-    //     const email = parameters && parameters.email;
-    //     if (!email) {
-    //         return res.json({
-    //             fulfillmentText: 'Please provide a valid email ID.'
-    //         });
-    //     }
-    //     // Save email to session parameters
-    //     req.session.email = email;
-    //     return res.json({
-    //         fulfillmentText: 'Please enter your password.'
-    //     });
-    // }
-    
     if (intent === 'signinIntent') {
         const password = parameters && parameters.password;
         const email = parameters && parameters.email;
@@ -169,7 +149,7 @@ router.post('/webhook', async (req, res) => {
                 return res.json({
                     fulfillmentText: 'Login successful!',
                     payload: {
-                        redirectUrl: 'http://localhost:3000/'
+                        redirectUrl: '/'
                     }
                 });
             } else {
