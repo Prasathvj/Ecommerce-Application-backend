@@ -24,20 +24,22 @@ router.post('/webhook', async (req, res) => {
     }
 
     if (intent === 'SearchProducts') {
-        const priceRange = parameters['price-range'];
-        const minPrice = priceRange[0].amount;
-        const maxPrice = priceRange[1].amount;
-        const category = parameters['category'];
-        const productName = parameters['product-name'];
-
-        let query = {};
+        const priceRange = parameters['price-range'] || [];
+        const category = parameters['category'] || "";
+        const productName = parameters['product-name'] || "";
     
-        if (minPrice && maxPrice) {
+        let query = {};
+        
+        if (priceRange.length >= 2) {
+            const minPrice = priceRange[0].amount;
+            const maxPrice = priceRange[1].amount;
             query.price = { $gte: minPrice, $lte: maxPrice };
         }
+    
         if (category) {
             query.category = category;
         }
+    
         if (productName) {
             query.name = { $regex: productName, $options: 'i' };
         }
@@ -48,18 +50,15 @@ router.post('/webhook', async (req, res) => {
                 let richContent = [[]];
                 products.forEach(product => {
                     richContent[0].push({
-                        "type": "chips",
-                        "options": [
-                            {
-                                "text": product.name,
-                                "image": {
-                                    "src": {
-                                        "rawUrl": `${product.images[0].image}`
-                                    }
-                                },
-                                "link": `https://prasath-e-commerce.netlify.app/product/${product._id}`
+                        "type": "info",
+                        "title": product.name,
+                        "subtitle": `${product.price} USD`,
+                        "image": {
+                            "src": {
+                                "rawUrl": product.images[0].image
                             }
-                        ]
+                        },
+                        "actionLink": `https://prasath-e-commerce.netlify.app/product/${product._id}`
                     });
                 });
     
@@ -84,6 +83,7 @@ router.post('/webhook', async (req, res) => {
             });
         }
     }
+    
     
 
     if (intent === 'FilterProductsByRating') {
