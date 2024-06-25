@@ -6,38 +6,20 @@ router.post('/webhook', async (req, res) => {
     const intent = req.body.queryResult.intent.displayName;
     const parameters = req.body.queryResult.parameters;
     
-    if (intent === 'ViewProductInfo') {
-        const productName = parameters['product-name'];
-        const product = await Product.findOne({ name: productName });
-    
-        if (product) {
-            const productId = product._id.toString();
-            const productLink = `http://localhost:3000/product/${productId}`;
-            res.json({
-                fulfillmentText: `Here is the product ID for ${productName}: ${productLink}`
-            });
-        } else {
-            res.json({
-                fulfillmentText: `Sorry, I could not find information for ${productName}`
-            });
-        }
-    }
-
     if (intent === 'SearchProductsByPriceRange') {
-        const priceRange = parameters['price-range'] || [];
-        
-        if (priceRange.length < 2) {
+        const minPrice = parameters['min-price'];
+        const maxPrice = parameters['max-price'];
+    
+        if (!minPrice || !maxPrice) {
             return res.json({
-                fulfillmentText: 'Please provide both minimum and maximum price.'
+                fulfillmentText: 'Please provide both minimum and maximum values for the price range.'
             });
         }
-        const minPrice = priceRange[0].amount;
-        const maxPrice = priceRange[1].amount;
-
+    
         let query = {
-            price: { $gte: minPrice, $lte: maxPrice }
+            price: { $gte: minPrice.amount, $lte: maxPrice.amount }
         };
-
+    
         try {
             const products = await Product.find(query);
             if (products.length > 0) {
@@ -56,7 +38,7 @@ router.post('/webhook', async (req, res) => {
                     });
                 });
     
-                res.json({
+                return res.json({
                     fulfillmentMessages: [
                         {
                             "payload": {
@@ -66,17 +48,17 @@ router.post('/webhook', async (req, res) => {
                     ]
                 });
             } else {
-                res.json({
+                return res.json({
                     fulfillmentText: 'No products found matching your criteria.'
                 });
             }
         } catch (error) {
             console.error(error);
-            res.json({
+            return res.json({
                 fulfillmentText: 'Failed to search for products.'
             });
         }
-    }
+    }    
 
     if (intent === 'SearchProductsByCategory') {
         const category = parameters['category'] || "";
@@ -183,7 +165,6 @@ router.post('/webhook', async (req, res) => {
         }
     }
     
-    
     if (intent === 'FilterProductsByRating') {
         const rating = parameters['star-rating'];
         console.log("rating", rating);
@@ -226,8 +207,6 @@ router.post('/webhook', async (req, res) => {
             });
         }
     }
-
-  
 
     if (intent === 'signinIntent') {
         const password = parameters && parameters.password;
